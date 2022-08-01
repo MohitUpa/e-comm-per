@@ -27,4 +27,3 @@ export class AddCategoryComponent implements OnInit {
     category.reset();
   }
 }
-  

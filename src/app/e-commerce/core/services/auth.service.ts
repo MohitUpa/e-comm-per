@@ -16,7 +16,7 @@ export class AuthService {
 
   signUpUser(userData: any) {    
     return this.http
-      .post('http://54.173.136.36:8080/register', {
+      .post('http://18.209.167.82:8080/register', {
         firstName: userData.firstName,
         lastName: userData.lastName,
         emailId: userData.email,
@@ -37,7 +37,7 @@ export class AuthService {
 
     
     return this.http
-      .post('http://54.173.136.36:8080/authenticate', {
+      .post('http://18.209.167.82:8080/authenticate', {
         username: userData.email,
         password: userData.password,
       })
@@ -73,7 +73,7 @@ export class AuthService {
     // this.http.get(url, header)
        
     return this.http
-      .post('http://54.173.136.36:8080/api/category/add', {
+      .post('http://18.209.167.82:8080/api/category/add', {
         name: data.categoryName
       })
        .pipe(

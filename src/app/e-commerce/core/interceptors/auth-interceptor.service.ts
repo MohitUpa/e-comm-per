@@ -29,6 +29,8 @@ export class AuthInterceptorService implements HttpInterceptor {
             Authorization: 'Bearer ' + user.token,
           },
         });
+        console.log(modRequest);
+        
         return next.handle(modRequest);
       })
     );
