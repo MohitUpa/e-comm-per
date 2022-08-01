@@ -1,0 +1,54 @@
+.prof_img {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.prof_img img {
+    padding: 5px;
+}
+
+.account {
+    margin: 20px auto;
+    width: 500px;
+    border: 1px solid lightgray;
+    text-align: center;
+    padding: 10px;
+}
+
+.account label {
+    font-size: 10px;
+    color: grey;
+    border-bottom: 2px solid rgb(160, 160, 160);
+}
+.account .details {
+    text-align: left;
+   margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.single_detail {
+    width: 228px;
+    border: 1px solid lightgray;
+    padding: 10px;
+    margin: 5px;
+}
+
+.edit_form {
+    margin: 20px auto;
+    width: 500px;
+    border: 1px solid lightgray;
+    padding: 30px;
+}
+
+.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+.ng-valid.ng-touched {
+    border-color: lightgreen;
+  }
+
+.btn-warning {
+    margin-left: 20px;
+}

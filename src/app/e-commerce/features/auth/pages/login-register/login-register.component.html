@@ -1,0 +1,192 @@
+<section id="form">
+  <!--form-->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-1">
+        <div class="login-form">
+          <!--login form-->
+          <h2>Login to your account</h2>
+          <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              ngModel
+              required
+              email
+              #email="ngModel"
+            />
+            <span
+              class="alert alert-danger"
+              *ngIf="!email.valid && email.errors.required && email.touched"
+            >
+              Email is required!
+            </span>
+            <span
+              class="alert alert-danger"
+              *ngIf="!email.valid && email.errors.email && email.touched"
+            >
+              Please enter a valid email!
+            </span>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              ngModel
+              required
+              #password="ngModel"
+            />
+            <span
+              class="alert alert-danger"
+              *ngIf="
+                !password.valid && password.errors.required && password.touched
+              "
+            >
+              password is required!
+            </span>
+            <span>
+              <input type="checkbox" class="checkbox" />
+              Keep me signed in
+            </span>
+            <button
+              type="submit"
+              class="btn btn-default"
+              [disabled]="!loginForm.valid"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+        <!--/login form-->
+      </div>
+      <div class="col-sm-1">
+        <h2 class="or">OR</h2>
+      </div>
+      <div class="col-sm-4">
+        <div class="signup-form">
+          <!--sign up form-->
+          <h2>New User Signup!</h2>
+          <form (ngSubmit)="onSignUp()" #signUpForm="ngForm">
+            <input
+              type="text"
+              placeholder="First Name"
+              name="firstName"
+              ngModel
+              required
+              #firstName="ngModel"
+            />
+            <span
+              class="alert alert-danger"
+              *ngIf="!firstName.valid && firstName.errors.required && firstName.touched"
+            >
+              Name is required!
+            </span>
+            <input
+              type="text"
+              placeholder="Last Name"
+              name="lastName"
+              ngModel
+              required
+              #lastName="ngModel"
+            />
+            <span
+              class="alert alert-danger"
+              *ngIf="!lastName.valid && lastName.errors.required && lastName.touched"
+            >
+              Name is required!
+            </span>
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="email"
+              ngModel
+              required
+              email
+              #emailSignUp="ngModel"
+            />
+            <span
+              class="alert alert-danger"
+              *ngIf="
+                !emailSignUp.valid &&
+                emailSignUp.errors.required &&
+                emailSignUp.touched
+              "
+            >
+              Email is required!
+            </span>
+            <span
+              class="alert alert-danger"
+              *ngIf="
+                !emailSignUp.valid &&
+                emailSignUp.errors.email &&
+                emailSignUp.touched
+              "
+            >
+              Please enter a valid email!
+            </span>
+            <input
+              type="number"
+              placeholder="Mobile Number"
+              name="mobileNumber"
+              ngModel
+              required
+              #mobileNumber="ngModel"
+            />
+            <span
+              class="alert alert-danger"
+              *ngIf="
+                !mobileNumber.valid &&
+                mobileNumber.errors.required &&
+                mobileNumber.touched
+              "
+            >
+              Email is required!
+            </span>
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              ngModel
+              required
+              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+              #passwordSignUp="ngModel"
+            />
+            <span
+              class="alert alert-danger"
+              *ngIf="
+                !passwordSignUp.valid &&
+                passwordSignUp.errors.required &&
+                passwordSignUp.touched
+              "
+            >
+              password is required!
+            </span>
+            <div
+              disabled
+              class="alert alert-danger"
+              *ngIf="
+                !passwordSignUp.valid &&
+                passwordSignUp.errors.pattern &&
+                passwordSignUp.touched
+              "
+            >password must contain-
+            at least eight characters,
+            including at least one number
+            and includes both lower and uppercase 
+            letters and special characters!
+            </div>
+            <button
+              type="submit"
+              class="btn btn-default"
+              [disabled]="!signUpForm.valid"
+            >
+              Signup
+            </button>
+          </form>
+        </div>
+        <!--/sign up form-->
+      </div>
+    </div>
+  </div>
+</section>
+<!--/form-->

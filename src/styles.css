@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+a {
+  cursor: pointer;
+}
+
+.noUi-handle:before, .noUi-handle:after {
+  content: none !important;
+}
+
+#slider-round {
+height: 10px;
+}
+
+#slider-round .noUi-connect {
+background: #fe980f;
+}
+
+#slider-round .noUi-handle {
+height: 18px;
+width: 18px;
+margin-top: 5px;
+margin-right: 5px;
+border-radius: 9px;
+}
+
+.owl-prev{
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  font-size: 100px;
+  color: #c2c2c1;
+  display: block !important;
+}
+
+.owl-next {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  font-size: 100px;
+  color: #c2c2c1;
+  display: block !important;
+}

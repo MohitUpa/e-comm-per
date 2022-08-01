@@ -1,0 +1,100 @@
+<div class="replay-box">
+  <div class="col-sm-12">
+    <form name="myForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <div class="col-sm-4">
+        <h2>Leave a replay</h2>
+
+        <div class="blank-arrow">
+          <label>Your Name</label>
+        </div>
+        <span>*</span>
+        <input
+          type="text"
+          placeholder="write your name..."
+          name="name"
+          ngModel
+          required
+          value="{{ name }}"
+          #name="ngModel"
+        />
+
+        <div class="blank-arrow">
+          <label>Email Address</label>
+        </div>
+        <span>*</span>
+
+        <input
+          type="email"
+          placeholder="your email address..."
+          name="email"
+          ngModel
+          required
+          #email="ngModel"
+        />
+
+        <div class="blank-arrow">
+          <label>Web Site</label>
+        </div>
+
+        <input
+          type="text"
+          placeholder="Web site...."
+          name="website"
+          ngModel
+          required
+          #website="ngModel"
+        />
+      </div>
+
+      <div class="col-sm-8">
+        <div class="text-area">
+          <div class="blank-arrow">
+            <label>Comment</label>
+          </div>
+          <span>*</span>
+          <textarea
+            name="comment"
+            rows="11"
+            ngModel
+            required
+            #description="ngModel"
+          ></textarea>
+        </div>
+        <input
+          type="submit"
+          name="submit"
+          id="submit"
+          value="Post comment"
+          class="btn btn-primary"
+          [disabled]="form.invalid"
+          data-toggle="modal"
+          data-target="#myModal"
+        />
+      </div>
+    </form>
+  </div>
+</div>
+<!--/Repaly Box-->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Thank you for commenting</h4>
+      </div>
+      <div class="modal-body">
+        <h2>Your comment is submitted</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

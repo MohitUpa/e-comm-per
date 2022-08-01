@@ -1,0 +1,21 @@
+<div class="response-area">
+  <h2>3 RESPONSES</h2>
+  <ul class="media-list">
+    <li class="media" *ngFor="let data of comments| paginate: { itemsPerPage: 3, currentPage: p }">
+      <a class="pull-left" >
+        <img class="media-object" src="assets/images/blog/man-two.jpg" alt="" />
+      </a>
+      <div class="media-body">
+        <ul class="sinlge-post-meta">
+          <li><i class="fa fa-user"></i>{{ data.name }}</li>
+          <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
+          <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
+        </ul>
+        <p>{{ data.comment }}</p>
+        <a class="btn btn-primary"><i class="fa fa-reply"></i>Replay</a>
+      </div>
+    </li>
+  </ul>
+</div>
+<!--/Response-area-->
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

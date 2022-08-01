@@ -1,0 +1,36 @@
+<div class="category-tab">
+  <!--category-tab-->
+  <div class="col-sm-12">
+    <ul class="nav nav-tabs">
+      <li
+        *ngFor="let item of categoryData; let i = index"
+        [class]="selectedIndex == i ? 'active' : ''"
+      >
+        <a (click)="showProducts(item.id, i)">{{ item.name }}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-content">
+    <div
+      class="tab-pane fade active in"
+      *ngFor="let product of products"
+      id="tshirt"
+    >
+      <div class="col-sm-3">
+        <div class="product-image-wrapper">
+          <div class="single-products">
+            <div class="productinfo text-center">
+              <img [src]="product.banner" alt="" />
+              <h2>${{ product.price }}</h2>
+              <p>{{ product.product_name }}</p>
+              <a class="btn btn-default add-to-cart" (click)="addToCart(product)"
+                ><i class="fa fa-shopping-cart"></i>Add to cart</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 

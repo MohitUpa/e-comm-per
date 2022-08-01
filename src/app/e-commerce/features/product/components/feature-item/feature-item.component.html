@@ -1,0 +1,38 @@
+<h2 class="title text-center">Features Items</h2>
+<div class="row">
+  <div
+    *ngFor="
+      let product of productData
+        | paginate: { itemsPerPage: 12, currentPage: page }
+    "
+  >
+    <div class="col-sm-4">
+      <div class="product-image-wrapper">
+        <div class="single-products">
+          <div class="productinfo text-center">
+            <img
+              src="{{ product.banner }}"
+              alt=""
+              routerLink="./{{ product.id }}"
+            />
+            <h2 >${{ product.price }}</h2>
+            <p>{{ product.product_name }}</p>
+            <a class="btn btn-default add-to-cart" (click)="addToCart(product)"
+              ><i class="fa fa-shopping-cart"></i>Add to cart</a
+            >
+          </div>
+        </div>
+        <div class="choose">
+          <ul class="nav nav-pills nav-justified">
+            <li>
+              <a (click)="addToWishList(product)"
+                ><i class="fa fa-plus-square"></i>Add to wishlist</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<pagination-controls (pageChange)="page = $event"></pagination-controls>

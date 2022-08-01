@@ -1,0 +1,129 @@
+<div class="shopper-informations">
+  <div class="row">
+    <div class="bill-to">
+      <p>Bill To</p>
+      <div class="col-sm-12 clearfix">
+        <form #checkOutForm="ngForm" (ngSubmit)="onCheckout(checkOutForm)">
+          <div class="col-sm-8">
+            <div class="form-one" formGroupName="form-one">
+              <input
+                type="text"
+                ngModel
+                name="companyName"
+                placeholder="Company Name"
+                required
+              />
+              <input
+                type="text"
+                ngModel
+                name="email"
+                placeholder="Email*"
+                required
+                email
+              />
+              <input type="text" ngModel name="title" placeholder="Title" />
+              <input
+                type="text"
+                ngModel
+                name="firstName"
+                placeholder="First Name *"
+                required
+              />
+              <input
+                type="text"
+                ngModel
+                name="middleName"
+                placeholder="Middle Name"
+              />
+              <input
+                type="text"
+                ngModel
+                name="lastName"
+                placeholder="Last Name *"
+                required
+              />
+              <input
+                type="text"
+                ngModel
+                name="addressOne"
+                placeholder="Address 1 *"
+                required
+              />
+              <input
+                type="text"
+                ngModel
+                name="addressTwo"
+                placeholder="Address 2"
+              />
+            </div>
+            <div class="form-two" formGroupName="form-two">
+              <input
+                type="text"
+                ngModel
+                name="postalCode"
+                placeholder="Zip / Postal Code *"
+                required
+              />
+              <select ngModel name="country" required>
+                <option selected value="">-- Country --</option>
+                <option>United States</option>
+                <option>Bangladesh</option>
+                <option>UK</option>
+                <option>India</option>
+                <option>Pakistan</option>
+                <option>Ucrane</option>
+                <option>Canada</option>
+                <option>Dubai</option>
+              </select>
+              <select ngModel name="state" required>
+                <option selected value="">
+                  -- State / Province / Region --
+                </option>
+                <option>United States</option>
+                <option>Bangladesh</option>
+                <option>UK</option>
+                <option>India</option>
+                <option>Pakistan</option>
+                <option>Ucrane</option>
+                <option>Canada</option>
+                <option>Dubai</option>
+              </select>
+              <input
+                type="text"
+                ngModel
+                name="phone"
+                placeholder="Phone *"
+                required
+              />
+              <input
+                type="text"
+                ngModel
+                name="mobileNumber"
+                placeholder="Mobile Phone"
+              />
+            </div>
+          </div>
+          <div class="col-sm-4" formGroupName="form-three">
+            <div class="order-message">
+              <p>Shipping Order</p>
+              <textarea
+                ngModel
+                name="message"
+                placeholder="Notes about your order, Special Notes for Delivery"
+                rows="16"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!checkOutForm.valid"
+          >
+            Confirm Details
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

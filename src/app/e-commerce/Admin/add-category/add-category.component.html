@@ -1,0 +1,28 @@
+<section class="addCat">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <!--sign up form-->
+                    <h2>Add Category!</h2>
+                    <form (ngSubmit)="onCatAdd(addCategory)" #addCategory="ngForm">
+
+                        <input type="text" placeholder="Category Name" name="categoryName" ngModel required
+                            #categoryName="ngModel" />
+
+                        <div class="alert alert-danger"
+                            *ngIf="!categoryName.valid && categoryName.errors.required && categoryName.touched">
+                            Category Name is required!
+                        </div>
+
+                        <button type="submit" class="btn btn-default" [disabled]="!addCategory.valid">
+                            Add Category
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/form-->

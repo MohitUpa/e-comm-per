@@ -1,0 +1,39 @@
+<section id="slider">
+  <!--slider-->
+  <div class="container">
+    <div>
+      <div class="col-sm-12">
+        <div id="slider-carousel" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="item active">
+              <owl-carousel-o [options]="customOptions">
+                <ng-container *ngFor="let slide of banner">
+                  <ng-template carouselSlide [id]="slide.id">
+                    <div class="col-sm-6">
+                      <h1><span>E</span>-SHOPPER</h1>
+                      <h2>{{ slide.title }}</h2>
+                      <p>
+                        {{ slide.description }}
+                      </p>
+                      <button type="button" class="btn btn-default get">
+                        Get it now
+                      </button>
+                    </div>
+                    <div class="col-sm-6">
+                      <img
+                        [src]="slide.banner"
+                        [alt]="slide.alt"
+                        [title]="slide.title"
+                      />
+                    </div>
+                  </ng-template>
+                </ng-container>
+              </owl-carousel-o>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/slider-->
