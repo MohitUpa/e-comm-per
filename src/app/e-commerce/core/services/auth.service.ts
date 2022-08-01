@@ -10,134 +10,112 @@ import { User } from '../../data/models/userData.model';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   user = new BehaviorSubject<LoggedUser>(null);
 
-  signUpUser(userData: any) {    
+  signUpUser(userData: any) {
     return this.http
-      .post('http://18.209.167.82:8080/register', {
+      .post('http://3.84.210.45:8080/register', {
         firstName: userData.firstName,
         lastName: userData.lastName,
         emailId: userData.email,
-        mobileNumber:userData.mobileNumber,
+        mobileNumber: userData.mobileNumber,
         password: userData.password,
         role: "USER",
         discountCoupons: null
       })
       .pipe(
         catchError(this.handleError),
-        tap((respData) => {})
+        tap((respData) => { })
       );
   }
 
   signInUser(userData: { email: string; password: string }) {
     console.log(userData);
 
-
-    
     return this.http
-      .post('http://18.209.167.82:8080/authenticate', {
+      .post('http://3.84.210.45:8080/authenticate', {
         username: userData.email,
         password: userData.password,
       })
       .pipe(
         catchError(this.handleError),
-        tap((respData: any) => { 
+        tap((respData: any) => {
           console.log(respData);
-                             
-          this.handleAuth( 
+
+          this.handleAuth(
             respData.token
           );
         })
       );
   }
 
-  addCategory(data: any) { 
+  allCategorys() {
+    let url = 'http://3.84.210.45:8080/api/category/get-all';
+    return this.http.get<any>(url);
+  }
+
+  allProducts() {
+    let url = 'http://54.173.136.36:8080/api/product/get-all';
+    return this.http.get<any>(url);
+  }
+
+  addCategory(data: any) {
     console.log(data.categoryName);
-
-    // var url = "http://localhost:4200/";
-
-    // let config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     'Access-Control-Allow-Origin': '*',
-    //     }
-    //   }
-
-    // var header = {
-    //   headers: new HttpHeaders()
-    //     .set('Authorization',  `Bearer ${this.authService.myToken}`)
-    // }
-    
-    // this.http.get(url, header)
-       
     return this.http
-      .post('http://18.209.167.82:8080/api/category/add', {
+      .post('http://3.84.210.45:8080/api/category/add', {
         name: data.categoryName
       })
-       .pipe(
+      .pipe(
         catchError(this.handleError),
         tap((respData) => {
           console.log(respData)
-          
+
         })
       );
   }
 
-  addProduct(product:any) {
+  addProduct(product: any) {
     console.log(product);
     return this.http
-    .post('http://54.173.136.36:8080/api/product/add', {
-      name: product.productName,
-      description: product.description,
-      searchKeywordList: ["Shirt","casual","red shirt"],
-      category: {
+      .post('http://54.173.136.36:8080/api/product/add', {
+        name: product.productName,
+        description: product.description,
+        searchKeywordList: ["Shirt", "casual", "red shirt"],
+        category: {
           id: product.category
-      },
-      image1: product.imageUrl,
-      image2: product.imageUrl2,
-      image3: product.imageUrl3,
-      price: product.productPrice,
-      gst: product.gst,
-      qty: product.productQty
-    })
-    .pipe(
-      catchError(this.handleError),
-      tap((respData) => {})
-    );
-      
-  }
-
-  signUp(userData: User) {
-    return this.http
-      .post('http://95.111.202.157/mangoproject/public/api/signup', {
-        first_name: userData.firstName,
-        last_name: userData.lastName,
-        email: userData.email,
-        password: userData.password,
+        },
+        image1: product.imageUrl,
+        image2: product.imageUrl2,
+        image3: product.imageUrl3,
+        price: product.productPrice,
+        gst: product.gst,
+        qty: product.productQty
       })
       .pipe(
         catchError(this.handleError),
-        tap((respData) => {})
+        tap((respData) => { })
       );
+
   }
 
+  updateCategory(data:any) {
 
-  signIn(userData: { email: string; password: string }) {
-    return this.http
-      .post<RespData>('http://95.111.202.157/mangoproject/public/api/login', {
-        email: userData['email'],
-        password: userData['password'],
-      })
-      .pipe(
-        catchError(this.handleError),
-        tap((respData: RespData) => {          
-          this.handleAuth(
-            respData.data.token
-          );
-        })
-      );
+  }
+
+  updateProduct(data:any) {
+    
+  }
+
+  deleteCategory(id:any) {
+    let url = 'http://54.173.136.36:8080/api/category/delete?id=' + id;
+    return this.http.get<any>(url);
+  }
+
+  deleteProduct(id:any) {
+    let url = 'http://54.173.136.36:8080/api/product/delete?id=' + id;
+    return this.http.get<any>(url);
   }
 
   logOut() {
@@ -159,17 +137,17 @@ export class AuthService {
       userData.email,
       userData.id,
       userData._token,
-    );    
+    );
     this.user.next(loadedUser);
   }
 
-  myToken : any;
+  myToken: any;
 
   private handleAuth(token: string) {
- 
+
     this.myToken = token;
 
-    let email = "mohit531531@gmail.com";
+    let email = "test@gmail.com";
     let userId = "123";
     const user = new LoggedUser(email, userId, token);
     this.user.next(user);
