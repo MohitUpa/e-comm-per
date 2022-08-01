@@ -9,29 +9,7 @@ import { AuthService } from '../core/services/auth.service';
 })
 export class AdminService {
 
-  constructor(private http: HttpClient, private authService:AuthService) { }
+  constructor() { }
 
-  addCategory(data: any) { 
-    console.log(data.categoryName);
-    var url = "http://localhost:4200/";
-
-    // var header = {
-    //   headers: new HttpHeaders()
-    //     .set('Authorization',  `Bearer ${this.authService.myToken}`)
-    // }
-    
-    // this.http.get(url, header)
-       
-    return this.http
-      .post('http://3.89.117.1:8080/api/category/add', {
-        name: data.categoryName
-      })
-      .pipe(
-        tap((respData) => {
-          console.log(respData);
-          
-        })
-      );
-  }
 }
    

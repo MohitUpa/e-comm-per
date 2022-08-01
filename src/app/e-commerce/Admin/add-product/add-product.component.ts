@@ -13,7 +13,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
-   imageUrl:any;
+  imageUrl:any;
   imageUrl2:any;
   imageUrl3:any;
   readURL(val:any) {
