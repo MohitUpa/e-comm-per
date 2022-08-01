@@ -6,7 +6,24 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './add-product.component.html',  
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent implements OnInit { 
+
+  productData = [
+    {
+      id: 1,
+      name : "watching Machine",
+      quantity: "10",
+      price: "10000",
+      image1: "waching1.png",
+      image2: "waching2.png",
+      image3: "waching3.png",
+      gst: "450",
+      category: "Electronics",
+      description: "Best Waching Machine",
+    }
+  ]
+
+  onEdit = false;
 
   constructor(private authService:AuthService) { }
 
@@ -39,6 +56,23 @@ export class AddProductComponent implements OnInit {
       }
     );
     productData.reset();
-    
+  }
+
+  editProduct(id: any) {
+    console.log(id);
+    this.onEdit = true;
+  }
+
+  onProductUpdate(data: any) {
+    console.log(data.value);
+    this.onEdit = false;
+    data.reset();
+  }
+
+  deleteProduct(id: any) {
+    console.log(id);
+    this.authService.deleteProduct(id).subscribe((a) => {
+      console.log(a);
+    });
   }
 }

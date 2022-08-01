@@ -1,4 +1,4 @@
-<div style="margin: 2%; margin-left:40%;">
+<div style="margin: 2%; margin-left:40%;"  *ngIf="!onEdit">
     <section class="addCat">
         <!--form-->
         <div class="container">
@@ -7,7 +7,7 @@
                     <div class="signup-form">
                         <!--sign up form-->
                         <h2>Add Product!</h2>
-                        <form (ngSubmit)="onProductAdd(addCategory)" #addCategory="ngForm">
+                        <form (ngSubmit)="onProductAdd(addProduct)" #addProduct="ngForm">
 
                             <input type="text" placeholder="Product Name" name="productName" ngModel required
                                 #productName="ngModel" />
@@ -85,7 +85,7 @@
                                     name="description" ngModel="description"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-default" [disabled]="!addCategory.valid">
+                            <button type="submit" class="btn btn-default" [disabled]="!addProduct.valid">
                                 Add Product
                             </button>
                         </form>
@@ -102,7 +102,7 @@
 
 
 
-<div class="container Mytable">
+<div class="container Mytable"  *ngIf="!onEdit">
     <h2>Product Data</h2>
     <table class="table table-bordered">
         <thead>
@@ -120,27 +120,130 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr *ngFor="let product of productData">
                 <td>
                     <div style="width: 150px;">
-                        <button type="button" class="btn btn-success">Edit</button>&nbsp;
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-success" (click)="editProduct(product.id)">Edit</button>&nbsp;
+                        <button type="button" class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
                     </div>
                 </td>
-                <td>Watch</td>
-                <td>20</td>
-                <td>500Rs</td>
-                <td>https://www.pngitem.com/pimgs/m/115-1156789_watches-png-image-watch-images-png-transparent-png.png
+                <td>{{product.name}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.image1}}
                 </td>
-                <td>https://www.pngitem.com/pimgs/m/115-1156789_watches-png-image-watch-images-png-transparent-png.png
+                <td>{{product.image2}}
                 </td>
-                <td>https://www.pngitem.com/pimgs/m/115-1156789_watches-png-image-watch-images-png-transparent-png.png
+                <td>{{product.image3}}
                 </td>
-                <td>30</td>
-                <td>3</td>
-                <td>Best Watch</td>
+                <td>{{product.gst}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.description}}</td>
             </tr>
         </tbody>
     </table>
 </div>
+
+
+<div style="margin: 2%; margin-left:40%;" *ngIf="onEdit">
+    <section class="addCat">
+        <!--form-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="signup-form">
+                        <!--sign up form-->
+                        <h2>Add Product!</h2>
+                        <form (ngSubmit)="onProductUpdate(updateProduct)" #updateProduct="ngForm">
+
+                            <input type="text" placeholder="Product Name" name="productName" ngModel required
+                                #productName="ngModel" />
+
+                            <div class="alert alert-danger"
+                                *ngIf="!productName.valid && productName.errors.required && productName.touched">
+                                Product Name is required!
+                            </div>
+
+                            <input type="number" placeholder="Product Quantity" name="productQty" ngModel required
+                                #productQty="ngModel" />
+
+                            <div class="alert alert-danger"
+                                *ngIf="!productQty.valid && productQty.errors.required && productQty.touched">
+                                Product Quantity is required!
+                            </div>
+
+                            <input type="number" placeholder="Product Price" name="productPrice" ngModel required
+                                #productPrice="ngModel" />
+
+                            <div class="alert alert-danger"
+                                *ngIf="!productPrice.valid && productPrice.errors.required && productPrice.touched">
+                                Product Price is required!
+                            </div>
+
+                            <input type="text" placeholder="Image Url 1" name="imageUrl1" ngModel required
+                                #imageUrl1="ngModel" (change)="readURL(imageUrl1)" />
+
+                            <div class="alert alert-danger"
+                                *ngIf="!imageUrl1.valid && imageUrl1.errors.required && imageUrl1.touched">
+                                Image Url 1 is required!
+                            </div>
+
+                            <!-- <img src="{{imageUrl}}" width="250px"> -->
+
+                            <input type="text" placeholder="Image Url 2" name="imageUrl2" ngModel required
+                                #imageUrl2="ngModel" (change)="readURL2(imageUrl2)" />
+
+                            <div class="alert alert-danger"
+                                *ngIf="!imageUrl2.valid && imageUrl2.errors.required && imageUrl2.touched">
+                                Image Url 2 is required!
+                            </div>
+
+                            <!-- <img src="{{imageUrl2}}" width="250px"> -->
+
+                            <input type="text" placeholder="Image Url 3" name="imageUrl3" ngModel required
+                                #imageUrl3="ngModel" (change)="readURL3(imageUrl3)" />
+
+                            <div class="alert alert-danger"
+                                *ngIf="!imageUrl3.valid && imageUrl3.errors.required && imageUrl3.touched">
+                                Image Url 3 is required!
+                            </div>
+
+                            <!-- <img src="{{imageUrl3}}" width="250px"> -->
+
+                            <input type="text" placeholder="GST" name="gst" ngModel required #gst="ngModel" />
+
+                            <div class="alert alert-danger" *ngIf="!gst.valid && gst.errors.required && gst.touched">
+                                GST is required!
+                            </div>
+
+                            <div class="form-group" ngFormGroup="">
+                                <label for="sel1">Category:</label>
+                                <select class="form-control" id="sel1" name="category" ngModel="id">
+                                    <option value="" disabled>Select</option>
+                                    <option [value]="1">Electronics</option>
+                                    <option [value]="2">Furniture</option>
+                                    <option [value]="3">Food</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="color:gray">Description</label>
+                                <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
+                                    name="description" ngModel="description"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-default" [disabled]="!updateProduct.valid">
+                                Update Product
+                            </button>
+                        </form>
+                    </div>
+                    <!--/sign up form-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/form-->
+
+</div>
 <br><br>
+

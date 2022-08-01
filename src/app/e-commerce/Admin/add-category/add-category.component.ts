@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { AdminService } from '../admin.service';
 
@@ -9,21 +10,76 @@ import { AdminService } from '../admin.service';
 })
 export class AddCategoryComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  onEdit = false;
+
+  allCategorys = [
+    {
+      id: 1,
+      name: 'electronic'
+    },
+    {
+      id: 2,
+      name: 'Furniture'
+    },
+    {
+      id: 3,
+      name: 'Cloaths'
+    },
+    {
+      id: 4,
+      name: 'Mens'
+    },
+    {
+      id: 5,
+      name: 'Footwear'
+    },
+  ];
+
+  subscription: Subscription = new Subscription;
+
+  constructor(private authService: AuthService) {
+    this.authService.allCategorys();
+  }
 
   ngOnInit(): void {
+    this.subscription.add(this.authService
+      .allCategorys()
+      .subscribe((product) => {
+        console.log(product);
+        // this.allCategorys = product.data;
+      }));
   }
-  onCatAdd(category:any) {
+
+
+  onCatAdd(category: any) {
     this.authService.addCategory(category.value)
-    .subscribe(
-      (response) => {        
-        console.log(response);
-      },
-      (errorMessage) => {
-        console.log(errorMessage);
-        alert(errorMessage);
-      }
-    );
+      .subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (errorMessage) => {
+          console.log(errorMessage);
+          alert(errorMessage);
+        }
+      );
     category.reset();
+  }
+
+  editCat(id: any) {
+    console.log(id);
+    this.onEdit = true;
+  }
+
+  onCatUpdate(data: any) {
+    console.log(data.value);
+    this.onEdit = false;
+    data.reset();
+  }
+
+  deleteCat(id: any) {
+    console.log(id);
+    this.authService.deleteCategory(id).subscribe((a) => {
+      console.log(a);
+    });
   }
 }

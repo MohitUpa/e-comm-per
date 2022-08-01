@@ -1,4 +1,4 @@
-<section class="addCat">
+<section class="addCat" *ngIf="!onEdit">
     <!--form-->
     <div class="container">
         <div class="row">
@@ -26,7 +26,7 @@
     </div>
 </section>
 
-<div class="container Mytable">
+<div class="container Mytable" *ngIf="!onEdit">
     <h2>Product Data</h2>
     <table class="table table-bordered">
         <thead>
@@ -36,14 +36,45 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr *ngFor="let category of allCategorys">
                 <td>
-                    <button type="button" class="btn btn-success">Edit</button>&nbsp;
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" (click)="editCat(category.id)" class="btn btn-success">Edit</button>&nbsp;
+                    <button type="button" (click)="deleteCat(category.id)" class="btn btn-danger">Delete</button>
                 </td>
-                <td>Electronics</td>
+                <td>{{category.name}}</td> 
             </tr>
         </tbody>
     </table>
 </div>
 <br>
+
+
+<section class="addCat" *ngIf="onEdit">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="signup-form">
+                    <!--sign up form-->
+                    <h2>Edit Category!</h2>
+                    <form (ngSubmit)="onCatUpdate(updateCategory)" #updateCategory="ngForm">
+
+                        <input type="hidden" name="id" ngModel>
+
+                        <input type="text" placeholder="Category Name" name="categoryName" ngModel required
+                            #categoryName="ngModel" />
+
+                        <div class="alert alert-danger"
+                            *ngIf="!categoryName.valid && categoryName.errors.required && categoryName.touched">
+                            Category Name is required!
+                        </div>
+
+                        <button type="submit" class="btn btn-default" [disabled]="!updateCategory.valid">
+                            Add Category
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
