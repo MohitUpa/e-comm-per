@@ -2,7 +2,7 @@
 <div class="row">
   <div
     *ngFor="
-      let product of productData
+      let product of productDataInfo
         | paginate: { itemsPerPage: 12, currentPage: page }
     "
   >
@@ -11,12 +11,13 @@
         <div class="single-products">
           <div class="productinfo text-center">
             <img
-              src="{{ product.banner }}"
+              src="{{ product.image2 }}"
               alt=""
               routerLink="./{{ product.id }}"
+              height="250"
             />
             <h2 >${{ product.price }}</h2>
-            <p>{{ product.product_name }}</p>
+            <p>{{ product.name }}</p>
             <a class="btn btn-default add-to-cart" (click)="addToCart(product)"
               ><i class="fa fa-shopping-cart"></i>Add to cart</a
             >
