@@ -29,7 +29,7 @@ const routes:Routes = [
     PageNotFoundComponent,
     FeaturesItemIndexComponent,
     AccountComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
   ],
   imports: [
     CommonModule,

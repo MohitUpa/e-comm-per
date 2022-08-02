@@ -1,5 +1,4 @@
-<div class="features_items">
-    <!--features_items-->
+<!-- <div class="features_items">
     <h2 class="title text-center">Features Items</h2>
     <div *ngFor="let data of productData">
         <div class="col-sm-4">
@@ -21,4 +20,28 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<div class="features_items">
+    <h2 class="title text-center">Features Items</h2>
+    <div *ngFor="let data of productDataInfo">
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="{{data.image2}}" alt="" routerLink="./product/{{data.id}}" height="250"/>
+                        <h2>${{data.price}}</h2>
+                        <p>{{data.name}}</p>
+                        <a class="btn btn-default add-to-cart" (click)="addToCart(data)"><i
+                                class="fa fa-shopping-cart"></i>Add to cart</a>
+                    </div>
+                </div>
+                <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a (click)="addToWhishlist(data)"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

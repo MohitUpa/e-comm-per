@@ -19,7 +19,7 @@ export class AuthService {
 
   signUpUser(userData: any) {
     return this.http
-      .post('http://3.84.210.45:8080/register', {
+      .post('http://52.205.251.31:8080/register', {
         firstName: userData.firstName,
         lastName: userData.lastName,
         emailId: userData.email,
@@ -38,7 +38,7 @@ export class AuthService {
     console.log(userData);
 
     return this.http
-      .post('http://3.84.210.45:8080/authenticate', {
+      .post('http://52.205.251.31:8080/authenticate', {
         username: userData.email,
         password: userData.password,
       })
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   allCategorys() {
-    let url = 'http://3.84.210.45:8080/api/category/get-all';
+    let url = 'http://52.205.251.31:8080/api/category/get-all';
     return this.http.get<any>(url);
 
     // return this.token.pipe(take(1), exhaustMap(user=> {
@@ -64,14 +64,14 @@ export class AuthService {
   }
 
   allProducts() {
-    let url = 'http://3.84.210.45:8080/api/product/get-all';
+    let url = 'http://52.205.251.31:8080/api/product/get-all';
     return this.http.get<any>(url);
   }
 
   addCategory(data: any) {
     console.log(data.categoryName);
     return this.http
-      .post('http://3.84.210.45:8080/api/category/add', {
+      .post('http://52.205.251.31:8080/api/category/add', {
         name: data.name
       })
       .pipe(
@@ -86,7 +86,7 @@ export class AuthService {
   addProduct(product: any) {
     console.log(product);
     return this.http
-      .post('http://3.84.210.45:8080/api/product/add', {
+      .post('http://52.205.251.31:8080/api/product/add', {
         name: product.name,
         description: product.description,
         searchKeywordList: ["Shirt", "casual", "red shirt"],
@@ -108,7 +108,7 @@ export class AuthService {
   }
 
   updateCategory(updatedCatData: any) {
-    this.http.put<any>('http://3.84.210.45:8080/api/category/edit',
+    this.http.put<any>('http://52.205.251.31:8080/api/category/edit',
     {
       id: updatedCatData.id,
       name: updatedCatData.name,
@@ -119,7 +119,7 @@ export class AuthService {
   }
 
   updateProduct(updatedData: any) {
-    this.http.put<any>('http://3.84.210.45:8080/api/product/edit',
+    this.http.put<any>('http://52.205.251.31:8080/api/product/edit',
       {
         id: updatedData.id,
         name: updatedData.name,
@@ -138,12 +138,12 @@ export class AuthService {
   }
 
   deleteCategory(id: any) {
-    let url = 'http://3.84.210.45:8080/api/category/delete?id=' + id;
+    let url = 'http://52.205.251.31:8080/api/category/delete?id=' + id;
     return this.http.delete<any>(url);
   }
 
   deleteProduct(id: any) {
-    let url = 'http://3.84.210.45:8080/api/product/delete?id=' + id;
+    let url = 'http://52.205.251.31:8080/api/product/delete?id=' + id;
     return this.http.delete<any>(url);
   }
 
