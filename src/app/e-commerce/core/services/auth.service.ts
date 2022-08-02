@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, map, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, exhaustMap, map, take, tap, throwError } from 'rxjs';
 import { LoggedUser } from '../../data/models/login.model';
 import { RespData } from '../../data/models/responseData.model';
 import { User } from '../../data/models/userData.model';
@@ -10,6 +10,9 @@ import { User } from '../../data/models/userData.model';
   providedIn: 'root',
 })
 export class AuthService {
+
+  // token = new BehaviorSubject<any>(null);
+
   constructor(private http: HttpClient, private router: Router) { }
 
   user = new BehaviorSubject<LoggedUser>(null);
@@ -54,10 +57,14 @@ export class AuthService {
   allCategorys() {
     let url = 'http://3.84.210.45:8080/api/category/get-all';
     return this.http.get<any>(url);
+
+    // return this.token.pipe(take(1), exhaustMap(user=> {
+    //   return this.http.get<any>(url);
+    // }))
   }
 
   allProducts() {
-    let url = 'http://54.173.136.36:8080/api/product/get-all';
+    let url = 'http://3.84.210.45:8080/api/product/get-all';
     return this.http.get<any>(url);
   }
 
@@ -65,7 +72,7 @@ export class AuthService {
     console.log(data.categoryName);
     return this.http
       .post('http://3.84.210.45:8080/api/category/add', {
-        name: data.categoryName
+        name: data.name
       })
       .pipe(
         catchError(this.handleError),
@@ -79,19 +86,19 @@ export class AuthService {
   addProduct(product: any) {
     console.log(product);
     return this.http
-      .post('http://54.173.136.36:8080/api/product/add', {
-        name: product.productName,
+      .post('http://3.84.210.45:8080/api/product/add', {
+        name: product.name,
         description: product.description,
         searchKeywordList: ["Shirt", "casual", "red shirt"],
         category: {
           id: product.category
         },
-        image1: product.imageUrl,
-        image2: product.imageUrl2,
-        image3: product.imageUrl3,
-        price: product.productPrice,
+        image1: product.image1,
+        image2: product.image2,
+        image3: product.image3,
+        price: product.price,
         gst: product.gst,
-        qty: product.productQty
+        qty: product.quantity
       })
       .pipe(
         catchError(this.handleError),
@@ -100,22 +107,44 @@ export class AuthService {
 
   }
 
-  updateCategory(data:any) {
-
+  updateCategory(updatedCatData: any) {
+    this.http.put<any>('http://3.84.210.45:8080/api/category/edit',
+    {
+      id: updatedCatData.id,
+      name: updatedCatData.name,
+    })
+    .subscribe(response => {
+      console.log(response);
+    });
   }
 
-  updateProduct(data:any) {
-    
+  updateProduct(updatedData: any) {
+    this.http.put<any>('http://3.84.210.45:8080/api/product/edit',
+      {
+        id: updatedData.id,
+        name: updatedData.name,
+        description: updatedData.description,
+        searchKeywordList: ["T-Shirt", "Polo", "yellow t-shirt"],
+        category: {
+          "id": updatedData.category
+        },
+        price: updatedData.price,
+        gst: updatedData.gst,
+        qty: updatedData.quantity
+      })
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 
-  deleteCategory(id:any) {
-    let url = 'http://54.173.136.36:8080/api/category/delete?id=' + id;
-    return this.http.get<any>(url);
+  deleteCategory(id: any) {
+    let url = 'http://3.84.210.45:8080/api/category/delete?id=' + id;
+    return this.http.delete<any>(url);
   }
 
-  deleteProduct(id:any) {
-    let url = 'http://54.173.136.36:8080/api/product/delete?id=' + id;
-    return this.http.get<any>(url);
+  deleteProduct(id: any) {
+    let url = 'http://3.84.210.45:8080/api/product/delete?id=' + id;
+    return this.http.delete<any>(url);
   }
 
   logOut() {
