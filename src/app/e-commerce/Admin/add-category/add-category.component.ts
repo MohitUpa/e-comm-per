@@ -73,7 +73,7 @@ export class AddCategoryComponent implements OnInit {
 
   onCatUpdate(data: any) {
     console.log(data.value);    
-    this.authService.updateProduct(data.value);
+    this.authService.updateCategory(data.value);
     this.onEdit = false;
     data.reset();
   }

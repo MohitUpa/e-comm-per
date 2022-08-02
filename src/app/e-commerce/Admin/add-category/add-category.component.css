@@ -4,8 +4,8 @@
 
 .Mytable {
     border-radius: 10px;
+    margin:2% 8%;
     padding: 20px;
-    margin: 0 auto;
     width: 900px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    border: 2px solid lightgrey;
 }

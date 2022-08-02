@@ -1,4 +1,4 @@
-<div style="margin: 2%; margin-left:40%;"  *ngIf="!onEdit">
+<div style="margin: 2%;"  *ngIf="!onEdit">
     <section class="addCat">
         <!--form-->
         <div class="container">
@@ -146,7 +146,7 @@
 </div>
 
 
-<div style="margin: 2%; margin-left:40%;" *ngIf="onEdit">
+<div style="margin: 2%;" *ngIf="onEdit">
     <section class="addCat">
         <!--form-->
         <div class="container">
@@ -154,7 +154,7 @@
                 <div class="col-sm-4">
                     <div class="signup-form">
                         <!--sign up form-->
-                        <h2>Add Product!</h2>
+                        <h2>Edit Product!</h2>
                         <form (ngSubmit)="onProductUpdate(updateProduct)" #updateProduct="ngForm">
 
                             <input type="hidden"  name="id" [(ngModel)]="editData.id" required

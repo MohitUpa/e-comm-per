@@ -58,9 +58,8 @@
                     <h2>Edit Category!</h2>
                     <form (ngSubmit)="onCatUpdate(updateCategory)" #updateCategory="ngForm">
 
-                        <input type="hidden" name="id" ngModel>
 
-                        <input type="text" name="id" [(ngModel)]="editData.id"  />
+                        <input type="hidden" name="id" [(ngModel)]="editData.id"  />
 
                         <input type="text" placeholder="Category Name" name="name" [(ngModel)]="editData.name" required
                             #categoryName="ngModel" />
@@ -71,7 +70,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-default" [disabled]="!updateCategory.valid">
-                            Add Category
+                            update Category
                         </button>
                     </form>
                 </div>
