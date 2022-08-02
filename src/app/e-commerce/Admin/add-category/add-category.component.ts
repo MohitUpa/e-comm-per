@@ -11,6 +11,7 @@ import { AdminService } from '../admin.service';
 export class AddCategoryComponent implements OnInit {
 
   onEdit = false;
+  editData:any;
 
   allCategorys = [
     {
@@ -66,12 +67,13 @@ export class AddCategoryComponent implements OnInit {
   }
 
   editCat(id: any) {
-    console.log(id);
+    this.editData = this.allCategorys.find(item => item.id === id);
     this.onEdit = true;
   }
 
   onCatUpdate(data: any) {
-    console.log(data.value);
+    console.log(data.value);    
+    this.authService.updateProduct(data.value);
     this.onEdit = false;
     data.reset();
   }

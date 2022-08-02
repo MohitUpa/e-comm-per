@@ -8,8 +8,7 @@
                     <h2>Add Category!</h2>
                     <form (ngSubmit)="onCatAdd(addCategory)" #addCategory="ngForm">
 
-                        <input type="text" placeholder="Category Name" name="categoryName" ngModel required
-                            #categoryName="ngModel" />
+                        <input type="text" placeholder="Category Name" name="name" ngModel required #categoryName="ngModel" />
 
                         <div class="alert alert-danger"
                             *ngIf="!categoryName.valid && categoryName.errors.required && categoryName.touched">
@@ -61,7 +60,9 @@
 
                         <input type="hidden" name="id" ngModel>
 
-                        <input type="text" placeholder="Category Name" name="categoryName" ngModel required
+                        <input type="text" name="id" [(ngModel)]="editData.id"  />
+
+                        <input type="text" placeholder="Category Name" name="name" [(ngModel)]="editData.name" required
                             #categoryName="ngModel" />
 
                         <div class="alert alert-danger"

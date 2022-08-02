@@ -9,15 +9,16 @@
                         <h2>Add Product!</h2>
                         <form (ngSubmit)="onProductAdd(addProduct)" #addProduct="ngForm">
 
-                            <input type="text" placeholder="Product Name" name="productName" ngModel required
+                            <input type="text" placeholder="Product Name" name="name" ngModel required
                                 #productName="ngModel" />
+
 
                             <div class="alert alert-danger"
                                 *ngIf="!productName.valid && productName.errors.required && productName.touched">
                                 Product Name is required!
                             </div>
 
-                            <input type="number" placeholder="Product Quantity" name="productQty" ngModel required
+                            <input type="number" placeholder="Product Quantity" name="quantity" ngModel required
                                 #productQty="ngModel" />
 
                             <div class="alert alert-danger"
@@ -25,7 +26,7 @@
                                 Product Quantity is required!
                             </div>
 
-                            <input type="number" placeholder="Product Price" name="productPrice" ngModel required
+                            <input type="number" placeholder="Product Price" name="price" ngModel required
                                 #productPrice="ngModel" />
 
                             <div class="alert alert-danger"
@@ -33,7 +34,7 @@
                                 Product Price is required!
                             </div>
 
-                            <input type="text" placeholder="Image Url 1" name="imageUrl1" ngModel required
+                            <input type="text" placeholder="Image Url 1" name="image1" ngModel required
                                 #imageUrl1="ngModel" (change)="readURL(imageUrl1)" />
 
                             <div class="alert alert-danger"
@@ -43,7 +44,7 @@
 
                             <!-- <img src="{{imageUrl}}" width="250px"> -->
 
-                            <input type="text" placeholder="Image Url 2" name="imageUrl2" ngModel required
+                            <input type="text" placeholder="Image Url 2" name="image2" ngModel required
                                 #imageUrl2="ngModel" (change)="readURL2(imageUrl2)" />
 
                             <div class="alert alert-danger"
@@ -53,7 +54,7 @@
 
                             <!-- <img src="{{imageUrl2}}" width="250px"> -->
 
-                            <input type="text" placeholder="Image Url 3" name="imageUrl3" ngModel required
+                            <input type="text" placeholder="Image Url 3" name="image3" ngModel required
                                 #imageUrl3="ngModel" (change)="readURL3(imageUrl3)" />
 
                             <div class="alert alert-danger"
@@ -71,7 +72,7 @@
 
                             <div class="form-group" ngFormGroup="">
                                 <label for="sel1">Category:</label>
-                                <select class="form-control" id="sel1" name="category" ngModel="id">
+                                <select class="form-control" id="sel1" name="category" ngModel>
                                     <option value="" disabled>Select</option>
                                     <option [value]="1">Electronics</option>
                                     <option [value]="2">Furniture</option>
@@ -82,7 +83,7 @@
                             <div class="form-group">
                                 <label style="color:gray">Description</label>
                                 <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
-                                    name="description" ngModel="description"></textarea>
+                                    name="description" ngModel></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-default" [disabled]="!addProduct.valid">
@@ -156,7 +157,10 @@
                         <h2>Add Product!</h2>
                         <form (ngSubmit)="onProductUpdate(updateProduct)" #updateProduct="ngForm">
 
-                            <input type="text" placeholder="Product Name" name="productName" ngModel required
+                            <input type="hidden"  name="id" [(ngModel)]="editData.id" required
+                                />
+
+                                <input type="text" placeholder="Product Name" name="name" [(ngModel)]="editData.name" required
                                 #productName="ngModel" />
 
                             <div class="alert alert-danger"
@@ -164,7 +168,7 @@
                                 Product Name is required!
                             </div>
 
-                            <input type="number" placeholder="Product Quantity" name="productQty" ngModel required
+                            <input type="number" placeholder="Product Quantity" name="quantity" [(ngModel)]="editData.quantity" required
                                 #productQty="ngModel" />
 
                             <div class="alert alert-danger"
@@ -172,7 +176,7 @@
                                 Product Quantity is required!
                             </div>
 
-                            <input type="number" placeholder="Product Price" name="productPrice" ngModel required
+                            <input type="number" placeholder="Product Price" name="price" [(ngModel)]="editData.price" required
                                 #productPrice="ngModel" />
 
                             <div class="alert alert-danger"
@@ -180,7 +184,7 @@
                                 Product Price is required!
                             </div>
 
-                            <input type="text" placeholder="Image Url 1" name="imageUrl1" ngModel required
+                            <input type="text" placeholder="Image Url 1" name="image1" [(ngModel)]="editData.image1" required
                                 #imageUrl1="ngModel" (change)="readURL(imageUrl1)" />
 
                             <div class="alert alert-danger"
@@ -190,7 +194,7 @@
 
                             <!-- <img src="{{imageUrl}}" width="250px"> -->
 
-                            <input type="text" placeholder="Image Url 2" name="imageUrl2" ngModel required
+                            <input type="text" placeholder="Image Url 2" name="image2"  [(ngModel)]="editData.image2" required
                                 #imageUrl2="ngModel" (change)="readURL2(imageUrl2)" />
 
                             <div class="alert alert-danger"
@@ -200,7 +204,7 @@
 
                             <!-- <img src="{{imageUrl2}}" width="250px"> -->
 
-                            <input type="text" placeholder="Image Url 3" name="imageUrl3" ngModel required
+                            <input type="text" placeholder="Image Url 3" name="image3"  [(ngModel)]="editData.image3" required
                                 #imageUrl3="ngModel" (change)="readURL3(imageUrl3)" />
 
                             <div class="alert alert-danger"
@@ -210,7 +214,7 @@
 
                             <!-- <img src="{{imageUrl3}}" width="250px"> -->
 
-                            <input type="text" placeholder="GST" name="gst" ngModel required #gst="ngModel" />
+                            <input type="text" placeholder="GST" name="gst"  [(ngModel)]="editData.gst" required #gst="ngModel" />
 
                             <div class="alert alert-danger" *ngIf="!gst.valid && gst.errors.required && gst.touched">
                                 GST is required!
@@ -218,7 +222,7 @@
 
                             <div class="form-group" ngFormGroup="">
                                 <label for="sel1">Category:</label>
-                                <select class="form-control" id="sel1" name="category" ngModel="id">
+                                <select class="form-control" id="sel1" name="category" [(ngModel)]="editData.category">
                                     <option value="" disabled>Select</option>
                                     <option [value]="1">Electronics</option>
                                     <option [value]="2">Furniture</option>
@@ -229,7 +233,7 @@
                             <div class="form-group">
                                 <label style="color:gray">Description</label>
                                 <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
-                                    name="description" ngModel="description"></textarea>
+                                    name="description" [(ngModel)]="editData.description"></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-default" [disabled]="!updateProduct.valid">
