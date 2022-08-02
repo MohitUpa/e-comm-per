@@ -47,7 +47,7 @@ export class AddCategoryComponent implements OnInit {
       .allCategorys()
       .subscribe((product) => {
         console.log(product);
-        // this.allCategorys = product.data;
+        this.allCategorys.push(product.data);
       }));
   }
 
