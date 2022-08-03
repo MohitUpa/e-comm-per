@@ -11,6 +11,96 @@ import { User } from '../../data/models/userData.model';
 })
 export class AuthService {
 
+  productDataOriginal = [
+    {
+      id: 1,
+      name: "watching Machine",
+      quantity: "10",
+      price: "10000",
+      image1: "https://www.pngplay.com/wp-content/uploads/8/Automatic-Washing-Machine-PNG-Images-HD.png",
+      image2: "https://www.pngplay.com/wp-content/uploads/8/Automatic-Washing-Machine-PNG-Images-HD.png",
+      image3: "https://www.pngplay.com/wp-content/uploads/8/Laundry-Washing-Machine-PNG-HD-Quality.png",
+      gst: "450",
+      category: "1",
+      description: "Best Waching Machine",
+    },
+    {
+      id: 2,
+      name: "Watch",
+      quantity: "10",
+      price: "600",
+      image1: "https://www.pngitem.com/pimgs/m/115-1156789_watches-png-image-watch-images-png-transparent-png.png",
+      image2: "https://www.pngitem.com/pimgs/m/115-1156813_watch-png-transparent-image-png-transparent-best-watch.png",
+      image3: "https://www.pngitem.com/pimgs/m/115-1156824_download-watch-png-image-transparent-rolex-watch-png.png",
+      gst: "30",
+      category: "1",
+      description: "Best Watch",
+    },
+    {
+      id: 4,
+      name: "Television",
+      quantity: "10",
+      price: "25000",
+      image1: "https://www.pngitem.com/pimgs/m/195-1950216_led-tv-png-hd-transparent-png.png",
+      image2: "https://png.pngitem.com/pimgs/s/175-1755486_hd-tv-png-hisense-curved-smart-tv-transparent.png",
+      image3: "https://www.pngitem.com/pimgs/m/175-1755357_huawei-tv-32-inch-hd-png-download.png",
+      gst: "1050",
+      category: "1",
+      description: "Best Machine",
+    },
+    {
+      id: 5,
+      name: "Camera",
+      quantity: "10",
+      price: "20000",
+      image1: "https://freepngimg.com/thumb/photo_camera/9-2-photo-camera-png-hd.png",
+      image2: "https://freepngimg.com/thumb/photo%20camera/2-photo-camera-png-image.png",
+      image3: "https://freepngimg.com/thumb/photo%20camera/4-photo-camera-png-image.png", 
+      gst: "1050",
+      category: "1",
+      description: "Best Camera",
+    },
+    {
+      id: 6,
+      name: "refrigerator",
+      quantity: "10",
+      price: "40000",
+      image1: "https://www.pngitem.com/pimgs/m/108-1080472_single-door-refrigerator-png-picture-samsung-refrigerator-single.png",
+      image2: "https://www.pngitem.com/pimgs/m/194-1949759_godrej-rd-edge-duo-255-pd-inv-godrej.png",
+      image3: "https://www.pngitem.com/pimgs/m/491-4916925_godrej-rd-edge-duo-255-pd-inv-godrej.png",
+      gst: "1500",
+      category: "1",
+      description: "Best refrigerator",
+    }
+  ]
+
+  categorysAll:any = [
+    {
+      id: 1,
+      name: 'electronic'
+    },
+    {
+      id: 2,
+      name: 'Furniture'
+    },
+    {
+      id: 3,
+      name: 'Cloaths'
+    },
+    {
+      id: 4,
+      name: 'Mens'
+    },
+    {
+      id: 5,
+      name: 'Footwear'
+    },
+  ];
+  
+  cartDataOriginal = [];
+
+  wishlistDataOriginal = [];
+
   // token = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -19,7 +109,7 @@ export class AuthService {
 
   signUpUser(userData: any) {
     return this.http
-      .post('http://52.205.251.31:8080/register', {
+      .post('http://3.86.33.184:8080/register', {
         firstName: userData.firstName,
         lastName: userData.lastName,
         emailId: userData.email,
@@ -38,7 +128,7 @@ export class AuthService {
     console.log(userData);
 
     return this.http
-      .post('http://52.205.251.31:8080/authenticate', {
+      .post('http://3.86.33.184:8080/authenticate', {
         username: userData.email,
         password: userData.password,
       })
@@ -55,7 +145,7 @@ export class AuthService {
   }
 
   allCategorys() {
-    let url = 'http://52.205.251.31:8080/api/category/get-all';
+    let url = 'http://3.86.33.184:8080/api/category/get-all';
     return this.http.get<any>(url);
 
     // return this.token.pipe(take(1), exhaustMap(user=> {
@@ -64,14 +154,14 @@ export class AuthService {
   }
 
   allProducts() {
-    let url = 'http://52.205.251.31:8080/api/product/get-all';
+    let url = 'http://44.204.38.40:8080/api/product/get-all';
     return this.http.get<any>(url);
   }
 
   addCategory(data: any) {
     console.log(data.categoryName);
     return this.http
-      .post('http://52.205.251.31:8080/api/category/add', {
+      .post('http://44.204.38.40:8080/api/category/add', {
         name: data.name
       })
       .pipe(
@@ -86,7 +176,7 @@ export class AuthService {
   addProduct(product: any) {
     console.log(product);
     return this.http
-      .post('http://52.205.251.31:8080/api/product/add', {
+      .post('http://44.204.38.40:8080/api/product/add', {
         name: product.name,
         description: product.description,
         searchKeywordList: ["Shirt", "casual", "red shirt"],
@@ -108,7 +198,7 @@ export class AuthService {
   }
 
   updateCategory(updatedCatData: any) {
-    this.http.put<any>('http://52.205.251.31:8080/api/category/edit',
+    this.http.put<any>('http://44.204.38.40:8080/api/category/edit',
     {
       id: updatedCatData.id,
       name: updatedCatData.name,
@@ -119,7 +209,7 @@ export class AuthService {
   }
 
   updateProduct(updatedData: any) {
-    this.http.put<any>('http://52.205.251.31:8080/api/product/edit',
+    this.http.put<any>('http://44.204.38.40:8080/api/product/edit',
       {
         id: updatedData.id,
         name: updatedData.name,
@@ -138,12 +228,12 @@ export class AuthService {
   }
 
   deleteCategory(id: any) {
-    let url = 'http://52.205.251.31:8080/api/category/delete?id=' + id;
+    let url = 'http://44.204.38.40:8080/api/category/delete?id=' + id;
     return this.http.delete<any>(url);
   }
 
   deleteProduct(id: any) {
-    let url = 'http://52.205.251.31:8080/api/product/delete?id=' + id;
+    let url = 'http://44.204.38.40:8080/api/product/delete?id=' + id;
     return this.http.delete<any>(url);
   }
 

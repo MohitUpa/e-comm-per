@@ -106,12 +106,18 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
     //   });
   }
 
-  addToWhishlist(product: Product) {
-    this.WishListService.addWishListData(product);
+  addToWhishlist(product: any) {
+    this.authService.wishlistDataOriginal.push(product);
+    alert("product add to product");
+
+    // this.WishListService.addWishListData(product); 
   }
 
-  addToCart(data: Product) {
-    this.cartService.cart(data);
+  addToCart(data: any) {
+    console.log(data);
+    this.authService.cartDataOriginal.push(data);
+    alert("product add to cart");
+    // this.cartService.cart(data);
   }
 
   ngOnDestroy(): void {

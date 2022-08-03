@@ -13,28 +13,7 @@ export class AddCategoryComponent implements OnInit {
   onEdit = false;
   editData:any;
 
-  allCategorys = [
-    {
-      id: 1,
-      name: 'electronic'
-    },
-    {
-      id: 2,
-      name: 'Furniture'
-    },
-    {
-      id: 3,
-      name: 'Cloaths'
-    },
-    {
-      id: 4,
-      name: 'Mens'
-    },
-    {
-      id: 5,
-      name: 'Footwear'
-    },
-  ];
+  allCategorys :any;
 
   subscription: Subscription = new Subscription;
 
@@ -43,45 +22,55 @@ export class AddCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription.add(this.authService
-      .allCategorys()
-      .subscribe((product) => {
-        console.log(product);
-        this.allCategorys.push(product.data);
-      }));
+    this.allCategorys = this.authService.categorysAll;
+    // this.subscription.add(this.authService
+    //   .allCategorys()
+    //   .subscribe((product) => {
+    //     console.log(product);
+    //     this.allCategorys.push(product.data);
+    //   }));
   }
 
 
   onCatAdd(category: any) {
-    this.authService.addCategory(category.value)
-      .subscribe(
-        (response) => {
-          console.log(response);
-        },
-        (errorMessage) => {
-          console.log(errorMessage);
-          alert(errorMessage);
-        }
-      );
+    console.log(category);
+    
+
+    this.authService.categorysAll.push(category.value);
+
+    // this.authService.addCategory(category.value)
+    //   .subscribe(
+    //     (response) => {
+    //       console.log(response);
+    //     },
+    //     (errorMessage) => {
+    //       console.log(errorMessage);
+    //       alert(errorMessage);
+    //     }
+    //   );
     category.reset();
   }
 
   editCat(id: any) {
     this.editData = this.allCategorys.find(item => item.id === id);
+    this.authService.categorysAll.splice(this.authService.categorysAll.indexOf(id),1);
     this.onEdit = true;
   }
 
   onCatUpdate(data: any) {
-    console.log(data.value);    
-    this.authService.updateCategory(data.value);
+
+    this.authService.categorysAll.push(data.value);
+    this.allCategorys = this.authService.categorysAll;
+    // this.authService.updateCategory(data.value);
     this.onEdit = false;
     data.reset();
   }
 
   deleteCat(id: any) {
+    this.authService.categorysAll.splice(this.authService.categorysAll.indexOf(id),1);
     console.log(id);
-    this.authService.deleteCategory(id).subscribe((a) => {
-      console.log(a);
-    });
+    // this.authService.deleteCategory(id).subscribe((a) => {
+    //   console.log(a);
+    // });
   }
 }

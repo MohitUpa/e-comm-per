@@ -1,0 +1,29 @@
+<div class="header-middle">
+    <!--header-middle-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          
+        </div>
+        <div class="col-sm-8">
+          <div class="shop-menu pull-right">
+            <ul class="nav navbar-nav">
+              <li *ngIf="isAdmin">
+                <a routerLink="/admin/category" routerLinkActive="active"
+                  ><i class="fa fa-user"></i> Admin Category</a
+                >
+              </li>
+              <li *ngIf="isAdmin">
+                <a routerLink="/admin/product" routerLinkActive="active"
+                  ><i class="fa fa-user"></i> Admin Product</a
+                >
+              </li> 
+            
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/header-middle-->
+  
