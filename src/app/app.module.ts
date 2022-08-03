@@ -20,9 +20,10 @@ import { AuthInterceptorService } from './e-commerce/core/interceptors/auth-inte
 import { AddCategoryComponent } from './e-commerce/Admin/add-category/add-category.component';
 import { AddProductComponent } from './e-commerce/Admin/add-product/add-product.component';
 import { FormsModule } from '@angular/forms';
+import { ButtonComponent } from './e-commerce/Admin/button/button.component';
 
 @NgModule({
-  declarations: [AppComponent, BlogListComponent, BlogSingleComponent,AddCategoryComponent,AddProductComponent],
+  declarations: [AppComponent, BlogListComponent, BlogSingleComponent,AddCategoryComponent,AddProductComponent,ButtonComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
