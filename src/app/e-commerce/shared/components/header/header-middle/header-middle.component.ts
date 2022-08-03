@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/e-commerce/core/services/auth.service';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
 import { CartService } from 'src/app/e-commerce/data/services/cart.service';
@@ -8,17 +8,24 @@ import { CartService } from 'src/app/e-commerce/data/services/cart.service';
   templateUrl: './header-middle.component.html',
   styleUrls: ['./header-middle.component.css'],
 })
-export class HeaderMiddleComponent implements OnInit {
+export class HeaderMiddleComponent implements OnInit , OnChanges{
   isAuthenticated: boolean = false;
   cartValue: number;
   product: Product[] = [];
+  isAdmin  = true;
 
   constructor(
     private authService: AuthService,
     private cartService: CartService
   ) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    
+  }
+
   ngOnInit(): void {
+
+
     this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
     });

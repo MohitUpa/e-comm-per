@@ -43,11 +43,22 @@
       <div class="col-sm-8">
         <div class="shop-menu pull-right">
           <ul class="nav navbar-nav">
-            <li *ngIf="isAuthenticated">
+            <li *ngIf="isAdmin">
+              <a routerLink="/admin/category" routerLinkActive="active"
+                ><i class="fa fa-user"></i> Admin Category</a
+              >
+            </li>
+            <li *ngIf="isAdmin">
+              <a routerLink="/admin/product" routerLinkActive="active"
+                ><i class="fa fa-user"></i> Admin Product</a
+              >
+            </li> 
+            
+            <!-- <li *ngIf="isAuthenticated">
               <a routerLink="/account" routerLinkActive="active"
                 ><i class="fa fa-user"></i> Account</a
               >
-            </li>
+            </li> -->
             <li >
               <a routerLink="/wish-list" routerLinkActive="active"
                 ><i class="fa fa-star"></i> Wishlist</a

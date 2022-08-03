@@ -17,26 +17,25 @@
         </td>
         <td class="cart_description">
           <h4>
-            <a>{{ item.product_name }}</a>
+            <a>{{ item.name }}</a>
           </h4>
-          <p>Web ID: {{ item.Web_ID }}</p>
+          <p>Web ID: {{ item.id }}</p>
         </td>
         <td class="cart_price">
           <p>${{ item.price }}</p>
         </td>
         <td class="cart_quantity">
           <div class="cart_quantity_button">
-            <a class="cart_quantity_down" (click)="substract(item,'minus')"> - </a>
             <input
               class="cart_quantity_input"
               type="text"
               name="quantity"
               disabled
-              [value]="item.quant"
+              [value]="1"
               autocomplete="off"
               size="2"
+
             />
-            <a class="cart_quantity_up" (click)="add(item)"> + </a>
           </div>
         </td>
         <td class="cart_total">
@@ -48,7 +47,8 @@
               ngmodel
               disabled
               size="4"
-              value="${{ item.price * item.quant }}"
+              value="${{ item.price * quant }}"
+              
             />
           </p>
         </td>

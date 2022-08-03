@@ -18,10 +18,11 @@ import { CheckoutService } from 'src/app/e-commerce/data/services/checkout.servi
 })
 export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
   showTotal: boolean = true;
-  product: Product[] = [];
+  product: any = [];
   totalAmount: number = 0;
   checkoutDetails: {};
   Subscription: Subscription = new Subscription();
+  quant:any = 1;
 
   constructor(
     private router: Router,
@@ -35,17 +36,20 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
       this.showTotal = false;
     }
 
-    this.Subscription.add(
-      this.cartService
-        .getCartProducts()
-        .subscribe((data) => (this.product = data))
-    );
+    this.product = this.authService.cartDataOriginal;
+    
 
-    this.Subscription.add(
-      this.cartService.emitCartProducts.subscribe((data) => {
-        data.subscribe((product) => (this.product = product));
-      })
-    );
+    // this.Subscription.add(
+    //   this.cartService
+    //     .getCartProducts()
+    //     .subscribe((data) => (this.product = data))
+    // );
+
+    // this.Subscription.add(
+    //   this.cartService.emitCartProducts.subscribe((data) => {
+    //     data.subscribe((product) => (this.product = product));
+    //   })
+    // );
 
     this.Subscription.add(
       this.checkoutService.details.subscribe((details) => {
@@ -67,6 +71,8 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
   }
  
   add(product) {
+    console.log(product);
+    
     this.cartService.cart(product);
     this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
   }
