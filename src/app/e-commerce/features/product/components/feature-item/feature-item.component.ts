@@ -100,12 +100,15 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.subscription.add(this.authService
-      .allProducts()
-      .subscribe((product) => {
-        console.log(product);
-        this.productDataInfo.push(product.data);
-      }));
+    this.productDataInfo = this.authService.productDataOriginal;
+
+
+    // this.subscription.add(this.authService
+    //   .allProducts()
+    //   .subscribe((product) => {
+    //     console.log(product);
+    //     this.productDataInfo.push(product.data);
+    //   }));
     // this.subscription.add(this.productDataService
     //   .getData()
     //   .subscribe((product) => {
@@ -113,14 +116,24 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
     //   }));
   }
 
-  addToWishList(data: Product) {
-    this.subscription.add(
-      this.wishList.addWishListData(data).subscribe()
-    );
+  addToWishList(data: any) {
+    this.authService.wishlistDataOriginal.push(data);
+    
+      alert("Product Added to Wishlist");
+
+
+    // this.subscription.add(
+    //   this.wishList.addWishListData(data).subscribe()
+    // );
   }
 
-  addToCart(product: Product) {
-    this.cartService.cart(product);
+  addToCart(product: any) {
+    console.log(product);
+    this.authService.cartDataOriginal.push(product);
+    
+    // this.cartService.cart(product); 
+    alert("Product Added to cart");
+
   }
 
   ngOnDestroy(): void {
