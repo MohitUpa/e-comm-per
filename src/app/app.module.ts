@@ -21,9 +21,11 @@ import { AddCategoryComponent } from './e-commerce/Admin/add-category/add-catego
 import { AddProductComponent } from './e-commerce/Admin/add-product/add-product.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from './e-commerce/Admin/button/button.component';
+import { ReportButtonComponent } from './e-commerce/Admin/report-button/report-button.component';
+import { OrderPlacedComponent } from './e-commerce/Admin/order-placed/order-placed.component';
 
 @NgModule({
-  declarations: [AppComponent, BlogListComponent, BlogSingleComponent,AddCategoryComponent,AddProductComponent,ButtonComponent],
+  declarations: [AppComponent, BlogListComponent, BlogSingleComponent,AddCategoryComponent,AddProductComponent,ButtonComponent, ReportButtonComponent, OrderPlacedComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
