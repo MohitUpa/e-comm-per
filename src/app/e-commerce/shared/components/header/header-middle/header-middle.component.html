@@ -53,6 +53,12 @@
                 ><i class="fa fa-user"></i> Admin Product</a
               >
             </li> 
+            <!-- routerLinkActive="active" -->
+            <li *ngIf="isAdmin">
+              <a routerLink="/admin/report"
+                ><i class="fa fa-crosshairs"></i>Reports</a
+              >
+            </li> 
             
             <!-- <li *ngIf="isAuthenticated">
               <a routerLink="/account" routerLinkActive="active"
@@ -65,12 +71,14 @@
               >
             </li>
             <li >
-              <a routerLink="/checkout" routerLinkActive="active"
+              <!-- routerLinkActive="active" -->
+              <a routerLink="/checkout"
                 ><i class="fa fa-crosshairs"></i> Checkout</a
               >
             </li>
             <li>
-              <a routerLink="/cart" routerLinkActive="active"
+              <!-- routerLinkActive="active" -->
+              <a routerLink="/cart" 
                 ><i class="fa fa-shopping-cart"></i> Cart
                 <b class="badge">{{ cartValue }}</b>
               </a>

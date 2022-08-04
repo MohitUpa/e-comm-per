@@ -93,6 +93,8 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
     if (!this.checkoutDetails) {
       alert('Please enter & confirm your shipping details');
     } else {
+
+      this.router.navigate(["/order-sucess"]);
       this.Subscription.add(
         this.checkoutService
           .onPayout(this.product, this.totalAmount)

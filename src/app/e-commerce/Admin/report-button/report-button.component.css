@@ -1,0 +1,21 @@
+.report {
+    margin : 5% auto;
+    text-align: center;
+}
+.reportBtn {
+   width: 200px;
+   background-color: orange;
+   color: #fff;
+   padding: 20px;
+   border: none;
+   border-radius: 5px;
+}
+
+.reportBtn:hover{
+    width: 200px;
+    background-color: orange;
+    color: #fff;
+    padding: 20px;
+    border: 3px solid darkgoldenrod;
+    border-radius: 5px;
+ }
