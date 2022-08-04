@@ -9,25 +9,22 @@
     <app-cart></app-cart>
   </div>
 </section>
-<!-- <section id="do_action" *ngIf="totalAmount != 0">
+<section id="do_action" *ngIf="totalAmount != 0">
   <div class="container">
     <div class="heading">
       <h3>What would you like to do next?</h3>
       <p>
-        Choose if you have a discount code or reward points you want to use or
+        Choose if you have a discount code you want to use or
         would like to estimate your delivery cost.
       </p>
     </div>
     <div class="row">
       <div class="col-sm-12">
         <div class="total_area">
+          <h3 style="margin-left:40px;">Discound Code</h3>
           <ul>
             <li>
-              Cart Sub Total <span>${{ totalAmount }}</span>
-            </li>
-            <li>Shipping Cost <span>Free</span></li>
-            <li>
-              Total <span>${{ totalAmount }}</span>
+              <input type="text" placeholder="Code..." class="discount" style="color:rgb(65, 61, 61);padding:10px;outline:none;width: 400px; border:none; border-bottom:3px solid #fff;background:transparent;">
             </li>
           </ul>
           <a class="btn btn-default check_out" routerLink="/checkout">Check Out</a>
@@ -35,5 +32,4 @@
       </div>
     </div>
   </div>
-</section> -->
-<!--/#do_action-->
+</section>
